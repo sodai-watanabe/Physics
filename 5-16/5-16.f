@@ -2,14 +2,15 @@
 !variables
       COMPLEX*16 E         ! energy
       COMPLEX*16 k         ! momenta
-      REAL(8) mu,a0,re
+      REAL(8) mu,a0,re,mevfm
 
 !input 
       mu = 940.d0          !mev
-      E = (5.d0, -8.d0)
+      E = (3.d0, -2.d0)    !mev
+      mevfm = 197.32698d0
 
 ! calcurate positive momenta.
-      k = cdsqrt( dcmplx(2.d0*mu*E) )
+      k = cdsqrt( dcmplx(2.d0*mu*E) )  !mev
 
 ! reonance condition for k. calcuration a0 and re.
       if (dreal(k) > 0 .and. dimag(k) < 0 .and. 
