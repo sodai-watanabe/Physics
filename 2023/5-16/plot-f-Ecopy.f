@@ -2,12 +2,12 @@
 ! variables
       complex*16 Epole        ! pole
       complex*16 kpole        ! pole
-      real(8) k            ! momenta
-      complex*16 f         ! scattering amplitude
+      real(8) k               ! momenta
+      complex*16 f            ! scattering amplitude
            
-      real(8) h            ! bin
-      integer i            ! for r loop
+      real(8) h               ! bin
       real(8) mu ,mevfm, a0, re, E
+      integer i               ! for r loop
 ! function
       complex*16 func
 
@@ -46,7 +46,6 @@
       enddo
 
 
-      write(*,*) a0, re
       write(*,*) 'end!'
 
       close(11)
