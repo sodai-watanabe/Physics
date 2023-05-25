@@ -6,7 +6,7 @@
       complex*16 f            ! scattering amplitude
            
       real(8) h               ! bin
-      real(8) mu ,mevfm, a0, re, E
+      real(8) a0, re, E, MeVfm, mu
       integer i               ! for r loop
 ! function
       complex*16 func
@@ -18,34 +18,34 @@
 
 
 ! input
-      mevfm = 197.32698d0
-      mu = 470.d0                                                 ! meV
-      Epole = (2.d0, -1.d0)
-      
-      kpole = cdsqrt( dcmplx(2.d0*Epole) ) 
+      Epole = (30.d0, -30.d0)                  ! MeV
+      MeVfm = 197.d0
+      mu = 470.d0                               ! Mev
+      kpole = cdsqrt( dcmplx(2.d0*mu*Epole) )   ! MeV
 
      
-      a0 = (dreal(kpole)**2 + dimag(kpole)**2)/(2.d0*dimag(kpole))
+      a0 = ((2.d0*dimag(kpole))/(dreal(kpole)**2 + dimag(kpole)**2))   ! 1/MeV
 
-      re = 1.d0/dimag(kpole)
+      re = (1.d0/dimag(kpole))        ! 1/MeV
 
 ! output
-      h = 0.1d0
+      h = 0.1d0          ! Mev    
 
-      do i = 1, 100
+      do i = 1, 1000
 
-            E = i*h        ! mev
+            E = i*h        ! Mev
 
-            k = sqrt(2.d0*E)
+            k = sqrt(2.d0*mu*E)      ! Mev
 
             ! plot
             f = func(k, a0, re)
-            write(11,*) E, dreal(f)
-            write(12,*) E, dimag(f)
+            write(11,*) E, dreal(f)*MeVfm
+            write(12,*) E, dimag(f)*MeVfm
 
       enddo
 
-
+      write(*,*) 'kpole' , dreal(kpole), dimag(kpole)
+      write(*,*) 'a0:' , a0*MeVfm, 're:', re*MeVfm
       write(*,*) 'end!'
 
       close(11)
