@@ -19,7 +19,7 @@
       
 
 !file
-      open(11, file = "cll_zerorange.dat")
+      open(11, file = "5-25.dat")
 
 
 ! integration
@@ -45,6 +45,7 @@
          write(11,*) k*mevfm, 1+c1+c2+c3
       enddo
 
+      write(*,*) 'a0:',a0
 
 
       close(11)
