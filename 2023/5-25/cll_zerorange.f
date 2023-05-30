@@ -4,9 +4,10 @@
 !variables
       real(8) k
       integer :: n, i, j
-      real(8) :: Iint, x, hk, hx, a0, c1, c2, c3
+      real(8) :: Iint, x, hk, hx, a0fm,a0, c1, c2, c3
       real(8) :: pi=4.d0*atan(1.d0)
       real(8) :: mevfm = 197.32698d0
+      real(8) R
 
 ! function
       real(8) integrand 
@@ -15,7 +16,10 @@
 !input    
       n = 2000
       hk = 0.001d0
-      a0=-0.3d0
+      a0fm = -0.3d0
+      R = 5.d0
+
+      a0 = a0fm/R
       
 
 !file
@@ -42,7 +46,8 @@
          c3 = -1.d0/(1.d0/(k*a0**2) + k) * (1.d0 - exp(-4.d0*k**2))
      $    /(2.d0*k)
 
-         write(11,*) k*mevfm, 1+c1+c2+c3
+         !write(11,*) k/R*mevfm, 1+c1+c2+c3
+         write(11,*) k/R*mevfm, Iint
       enddo
 
       write(*,*) 'a0:',a0
