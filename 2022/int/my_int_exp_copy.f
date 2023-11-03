@@ -17,10 +17,10 @@
       
 
 !file
-      open(11, file = "my_int_-03_5.dat")
+      open(11, file = "my_int_0.3.dat")
 
 
-      a0=-0.3d0/5.d0
+      a0=0.3d0/5.d0
 
 
 ! integration
@@ -40,13 +40,10 @@
          c1 = 0.5d0*(1.d0/((1/a0)**2 + q**2))
          c2 = -2.d0/(sqrt(pi)) * 1.d0/((1.d0/a0) + a0*q**2)
      $         *exp(-4.d0*q**2)/(2.d0*q)*Iint
-         c2 = -2.d0/(sqrt(pi)) * 1.d0/((1.d0/a0) + a0*q**2)
-     $         *exp(-4.d0*q**2)/(2.d0*q)*Iint
-         
          c3 = -1.d0/(1.d0/(q*a0**2) + q) * (1.d0 - exp(-4.d0*q**2))
      $    /(2.d0*q)
 
-         write(11,*) q*mevfm*5.d0, 1+c1+c2+c3   !R=5のとき、q*mevfm*5.d0をわすれずに
+         write(11,*) q*mevfm, 1+c1+c2+c3   !R=5のときは、q*mevfm*5.d0をわすれずに
 
       enddo
 

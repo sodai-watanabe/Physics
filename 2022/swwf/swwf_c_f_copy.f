@@ -28,21 +28,22 @@
 
 ! input      
       mevfm = 197.32698d0
-      mu = 470.d0           !MeV 
+      mu = 470.d0           !MeV (核力)
+      !mu = 342.d0           !MeV(ALICE)
       b = 1.d0                 !fm
       V0c = -pi**2 /(8.d0*mu*(b/mevfm)**2)
 
       write(*,*) V0c
 
       
-      q = 2.d0
-      V0 = 10.d0
+      !q = 2.d0
+      !V0 = 10.d0
       read(12,*) q,V0
 
       k0 = cdsqrt( dcmplx(-2.d0*mu*V0) )
       a0 = b* (1.d0 - (tan((k0/mevfm)*b)) / ((k0/mevfm)*b)) 
 
-      write(*,*) V0, a0
+      write(*,*) "V0", V0, "a0", a0, "q", q
 
       k = cdsqrt( dcmplx(q**2 - 2.d0*mu*V0) )       ! momentum in well    !MeV
 
