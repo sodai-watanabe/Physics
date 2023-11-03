@@ -16,8 +16,8 @@
 !input    
       n = 2000
       hk = 0.001d0
-      a0fm = -0.3d0
-      R = 5.d0
+      a0fm = 10.3d0
+      R = 1.d0
 
       a0 = a0fm/R
       
@@ -46,15 +46,14 @@
          c3 = -1.d0/(1.d0/(k*a0**2) + k) * (1.d0 - exp(-4.d0*k**2))
      $    /(2.d0*k)
 
-         !write(11,*) k/R*mevfm, 1+c1+c2+c3
-         write(11,*) k/R*mevfm, Iint
+         write(11,*) k/R*mevfm, 1+c1+c2+c3
+         !write(11,*) k/R*mevfm, Iint
       enddo
 
       write(*,*) 'a0:',a0
 
 
       close(11)
-
 
 
       end

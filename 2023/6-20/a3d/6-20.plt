@@ -35,12 +35,12 @@ set key font "Helvetica,25"
 # 軸の範囲
 set xrange [0:50]
 set yrange [-50:0]
-set zrange [-5:0]
+set zrange [-3:0]
 
 # ゼロ軸を描画
 #se3t zeroaxis
 
 # プロット
 set pm3d map
-splot "6-20.dat" title "re[fm]"
+splot "6-20.dat" title "a0[fm]"
 #splot x*x*exp(-x*x)*y*y*exp(-y*y)　matrix nonuniform notitle

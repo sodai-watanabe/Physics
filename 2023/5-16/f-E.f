@@ -13,14 +13,13 @@
 
 
 ! file
-      open(11,file="plot-realf-out.dat") 
-      open(12,file="plot-imagf-out.dat") 
+      open(11,file="f-E.dat") 
 
 
 ! input
-      Epole = (30.d0, -30.d0)                  ! MeV
+      Epole = (50.d0, -10.d0)                  ! MeV
       MeVfm = 197.d0
-      mu = 470.d0                               ! Mev
+      mu = 342.d0                               ! Mev
       kpole = cdsqrt( dcmplx(2.d0*mu*Epole) )   ! MeV
 
      
@@ -39,8 +38,7 @@
 
             ! plot
             f = func(k, a0, re)
-            write(11,*) E, dreal(f)*MeVfm
-            write(12,*) E, dimag(f)*MeVfm
+            write(11,*) E, dreal(f)*MeVfm, dimag(f)*MeVfm
 
       enddo
 
@@ -49,7 +47,6 @@
       write(*,*) 'end!'
 
       close(11)
-      close(12)
 
 
       end

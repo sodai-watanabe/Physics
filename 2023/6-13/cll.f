@@ -20,14 +20,15 @@
 
 
 ! file
-      !open(11,file="-03.dat") 
+      open(11,file="R5-50.dat") 
 
 
 ! input
-      Epole = (1.d0, -0.5d0)                     ! MeV
+      Epole = (50.d0, -10.d0)                     ! MeV
+      !Epole = (6.98d0, -6.d0)                   ! ALICE MeV
       MeVfm = 197.d0
-      R = 5.d0/MeVfm
-      mu = 470.d0                               ! Mev
+      R = 2.d0/MeVfm
+      mu = 342.d0                               ! Mev
       kpole = cdsqrt( dcmplx(2.d0*mu*Epole) )   ! MeV
       hk = 0.1d0
       n = 4000
@@ -37,7 +38,7 @@
 
       re = (1.d0/dimag(kpole))                                         ! 1/MeV
       !a0 = -0.3d0/MeVfm
-      !re = 0.001d0
+      !re = 0.d0
 ! output  [0<k<400]  !MeV
       do j = 1, n
             Iint = 0.d0
@@ -64,7 +65,7 @@
             ! c3
             c3 = -dimag(f)/R*(1.d0 - exp(-(2.d0*k*R)**2))/(2.d0*k*R)
 
-            !write(11,*) k, 1+c1+c2+c3
+            write(11,*) k, 1+c1+c2+c3
             !write(11,*) k, 1+c1+c2+c3, 1+c1, 1+c2, 1+c3
 
       enddo
@@ -73,7 +74,7 @@
       write(*,*) 'a0:' , a0*MeVfm, 're:', re*MeVfm
       write(*,*) 'end!'
 
-      !close(11)
+      close(11)
 
 
       end

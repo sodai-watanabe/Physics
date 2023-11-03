@@ -19,7 +19,7 @@
 
 ! input
       MeVfm = 197.d0
-      mu = 470.d0        ! Mev
+      mu = 341.9d0        ! Mev
      
 ! output
       h = 1.d0          ! Mev    
@@ -39,8 +39,8 @@
      $                  + dimag(kpole)**2))
                   re = (1.d0/dimag(kpole))
 
-                  !write(11,*) realE, imagE, a0*MeVfm
-                  write(11,*) realE, imagE, a0*MeVfm,re*MeVfm
+                  write(11,*) realE, imagE,re*MeVfm
+                  !write(11,*) realE, imagE, a0*MeVfm,re*MeVfm
             
             enddo
 
