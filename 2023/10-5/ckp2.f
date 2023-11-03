@@ -13,7 +13,7 @@
       real(8) mu ,mevfm, V0c,b,R0
       real(8) :: pi = 4.d0*atan(1.d0)
 
-      real(8) inf,hr,Iint
+      real(8) inf,hr,Iint,a
 
 
 
@@ -24,6 +24,7 @@
 
 ! file 
       open(11,file="out.dat")
+      open(12,file="o.dat")
 
 ! input      
       mevfm = 197.32698d0
@@ -40,13 +41,14 @@
 
       h = 0.1d0
       
-      do i=1,4000
+      do i=1,4
       
         q = i*h                                   ! MeV
         k  = cdsqrt( dcmplx(q**2 - 2.d0*mu*V0) )  ! MeV
+        a = ckp(k/mevfm,q/mevfm,b,R0)
 
-        write(11,*) q, ckp(k/mevfm,q/mevfm,b,R0)
-
+        !write(11,*) q, ckp(k/mevfm,q/mevfm,b,R0)
+        !write(11,*) q, k, b, R0
       enddo
 
 
@@ -119,20 +121,31 @@
       integer i,inf
       real(8) :: pi = 4.d0*atan(1.d0)
 
-      real(8) integrand,q,r,b,R0
+      real(8) integrand,integrand0,q,r,b,R0
       complex*16 k
 
       Iint = 0.d0
       hr = 0.1d0
-      inf = 10000
+      inf = 10
+
+      integrand0 = (r**2)*S(r,R0)*(abs(asy(k,q,r,b))**2 
+     $                          - (sin(q*r)/(q*r))**2)
 
       do i = 1, inf
 
         r = i*hr
-        Iint = Iint + (integrand(k,q,r,b,R0)
+        if i = 1 
+          Iint = Iint + (integrand(k,q,r,b,R0)
+     $              + integrand0)*hr/2.d0
+        else 
+          Iint = Iint + (integrand(k,q,r,b,R0)
      $              + integrand(k,q,r - hr,b,R0))*hr/2.d0
+        
+
+        write(12,*) integrand(k,q,r - hr,b,R0)
 
       enddo
+
 
       ckp = 4.d0*pi*Iint
 
